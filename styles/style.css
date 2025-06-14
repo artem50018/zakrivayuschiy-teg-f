@@ -29,8 +29,8 @@
   max-width: 700px;
   margin: 0 auto;
   border: 2px solid #000;
-  padding: 127px 16px;
-  font-family: var(--accent-fonts);
+  padding: 128px 16px;
+  font-family: var(--accent-fonts), sans-serif;
   text-align: center;
   background-color: #FFFFFF;
 }
@@ -54,14 +54,13 @@
 .card__cont {
   min-width: 375px;
   max-width: 100%;
-  margin-bottom: 48px;
+  margin-bottom: 49.5px;
   border: 2px solid #000;
   background-color: #fff;
 }
 
 .card__title {
-  margin-left: 5px;
-  padding: 7px 5px 5px 5px;
+  padding: 5px 10px;
   font-size: 18px;
 }
 
@@ -71,7 +70,6 @@
 
 .card__img {
   width: 100%;
-  padding-bottom: 25px;
 }
 
 .filter__black {
@@ -107,21 +105,32 @@
   top: 3.7%;
   right: 3.6%;
   opacity: 0.5;
-  font-family: var(--accent-fonts);
+  font-family: var(--accent-fonts), sans-serif;
   font-size: 14px;
   mix-blend-mode: hard-light;
-  -webkit-text-stroke: 1px #FFFFFF;
+  text-shadow: 
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
 
+@supports (-webkit-text-stroke: 1px #FFFFFF) {
+  .card__img-text {
+    text-shadow: none;
+    -webkit-text-stroke: 1px #FFFFFF;
+  }
 }
 
 .card__text {
-  padding: 0 25px 25px 25px;
+  padding: 25px;
   font-size: 18px;
+  line-height: 117%;
 }
 
-.no_padding {
+.card__cont p.card__text:nth-child(4) {
   padding-top: 2px;
-  padding-bottom: 24px;
+  padding-bottom: 25px;
 }
 
 .button__cont {
@@ -129,11 +138,7 @@
   justify-content: end;
   align-items: center;
   margin-right: 25px;
-  margin-bottom: 26px;
-}
-
-.heart__cont {
-  display: flex;
+  margin-bottom: 25px;
 }
 
 .card__icon-button {
@@ -169,12 +174,16 @@
 .button {
   position: relative;
   padding: 9px 35px;
-  font-family: var(--accent-fonts);
+  font-family: var(--accent-fonts), sans-serif;
   background-color: initial;
-
+  border: 2px solid #000;
 }
 
 .button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
   box-shadow: 2px 2px;
   outline: none;
   transition: 0.3s ease;
@@ -222,10 +231,9 @@
   grid-template-columns: min-content 1fr;
   gap: 20px;
   min-width: 341px;
-  max-width: 357px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  font-family: var(--accent-fonts);
+  max-width: 359px;
+  padding: 30px;
+  font-family: var(--accent-fonts), sans-serif;
 }
 
 .dialo::backdrop {
@@ -246,8 +254,9 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  padding: 16px 20px;
+  padding: 15px 20px;
   background-color: #fff;
+  margin-top: 2px;
 }
 
 .dialo .button:nth-child(3) {
@@ -273,7 +282,7 @@
 
 .like-icon .contour {
   fill: transparent;
-  transition: fill 0.3s;
+  transition: ease 0.3s;
 }
 
 .like-icon:hover .contour {
@@ -282,12 +291,12 @@
 
 .like-icon:hover .contour {
   fill: var(--contour-color);
-  transition: fill 0.3s;
+  transition: ease 0.3s;
 }
 
 .like-icon:hover .main-body {
   fill: var(--contour-color);
-  transition: fill 0.3s linear 0.05s;
+  transition: ease 0.3s linear 0.05s;
 }
 
 .like-icon:active .main-body {
@@ -300,17 +309,17 @@
 
 .like-icon.is-liked .contour {
   fill: var(--heart-like-color);
-  transition: fill 0.3s linear 0.05s;
+  transition: ease 0.3s linear 0.05s;
 }
 
 .like-icon.is-liked .main-body {
   fill: var(--heart-like-color);
-  transition: fill 0.3s linear 0.05s;
+  transition: ease 0.3s linear 0.05s;
 }
 
 .like-icon.is-liked .core {
   fill: var(--heart-like-color);
-  transition: fill 0.3s linear 0.05s;
+  transition: ease 0.3s linear 0.05s;
 }
 
 .like-icon.is-liked .heart {
@@ -326,30 +335,17 @@
   animation-fill-mode: both;
 }
 
-.heart__cont,
+
 .card__icon-button,
 .button__cont,
 .like-icon {
   overflow: visible;
 }
 
-@keyframes heart-transform {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.25);
-  }
-}
-
-@keyframes sparks-opacity {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
+@supports (font-variation-settings: normal) {
+  .page {
+    font-family: 'Inter-Variable', sans-serif;
+    font-weight: var(--weight-text);
   }
 }
 
@@ -362,17 +358,27 @@
   .header__cont {
     min-width: 375px;
     max-width: 100%;
-    padding: 119px 14px;
+    padding: 120px 14px;
   }
 
   .header__text {
-    font-size: clamp(0rem, 0.275rem + 2.736vi, 1.447rem);
+    font-size: clamp(0rem, 0.24rem + 2.736vi, 1.447rem)
   }
 
   .card__img-text {
-    top: 6%;
+    top: 7%;
     right: 3%;
   }
+
+  .card__text {
+   padding-bottom: 25.2px;
+
+}
+
+.card__cont p.card__text:nth-child(4) {
+    padding-top: 2px;
+    padding-bottom: 24.5px;
+}
 
   .memory__button-cont {
     flex-direction: column;
